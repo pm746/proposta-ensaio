@@ -159,81 +159,50 @@ const buildPaymentOptions = (payment, total) => {
   });
 };
 
-function OptionBadge({ active, children }) {
-  return (
-    <span
-      className={`inline-flex items-center gap-2 border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] ${
-        active
-          ? "border-[var(--accent)] bg-[var(--accent)] text-white"
-          : "border-neutral-300 bg-white text-neutral-500"
-      }`}
-    >
-      {active ? <Check size={13} /> : null}
-      {children}
-    </span>
-  );
-}
-
-function ScopeAccordion({ block, open, onToggle }) {
-  const availableModes = getAvailableModes(block);
+function ScopeAccordion({ block, option, open, onToggle }) {
+  const panelId = "escopo-" + block.key + "-" + option.key;
 
   return (
     <div className="border-t border-neutral-300 bg-white">
       <button
+        type="button"
         onClick={onToggle}
-        className="grid w-full grid-cols-[74px_1fr_40px] items-center gap-4 px-0 py-5 text-left md:grid-cols-[110px_1fr_40px]"
+        aria-expanded={open}
+        aria-controls={panelId}
+        className="flex w-full items-center justify-between gap-4 py-6 text-left"
       >
-        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
-          Bloco {block.id}
-        </span>
-
-        <div>
-          <h3 className="text-xl font-semibold tracking-tight text-neutral-950">
-            {block.title}
-          </h3>
-          <p className="mt-1 max-w-3xl text-sm leading-6 text-neutral-600">
-            {block.note}
+        <div className="min-w-0">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+            Perfil de projeto
           </p>
+          <div className="flex flex-wrap items-baseline gap-x-5 gap-y-2">
+            <h3 className="text-2xl font-semibold tracking-tight text-neutral-950 md:text-3xl">
+              {getOptionLabel(block, option)}
+            </h3>
+            <p className="text-lg font-semibold text-[var(--accent)]">
+              {currency(option.value)}
+            </p>
+          </div>
         </div>
 
-        <span className="flex h-9 w-9 items-center justify-center border border-neutral-300 text-neutral-800">
-          {open ? <Minus size={17} /> : <Plus size={17} />}
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center border border-neutral-300 text-neutral-800">
+          {open ? <Minus size={18} /> : <Plus size={18} />}
         </span>
       </button>
 
       {open ? (
-        <div
-          className={`grid gap-4 pb-6 ${
-            availableModes.length > 2 ? "md:grid-cols-3" : availableModes.length > 1 ? "md:grid-cols-2" : "md:grid-cols-1"
-          }`}
-        >
-          {availableModes.map((option) => (
-            <div
-              key={option.key}
-              className="border border-neutral-300 bg-neutral-50 p-5"
-            >
-              <div className="mb-4">
-                <OptionBadge
-                  active={option.key === "expanded" || availableModes.length === 1}
-                >
-                  {getOptionLabel(block, option)}
-                </OptionBadge>
-
-                <p className="mt-3 text-sm font-medium leading-6 text-neutral-900">
-                  {option.description}
-                </p>
-              </div>
-
-              <ul className="space-y-2 text-sm leading-6 text-neutral-700">
-                {(option.includes || []).map((item, index) => (
-                  <li key={index} className="grid grid-cols-[14px_1fr] gap-2">
-                    <span className="mt-[11px] h-[3px] w-[8px] bg-[var(--accent)]" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        <div id={panelId} className="pb-8">
+          <p className="mb-5 max-w-3xl text-base font-medium leading-7 text-neutral-900">
+            {option.description}
+          </p>
+          <ul className="grid gap-3 text-sm leading-7 text-neutral-700">
+            {(option.includes || []).map((item, index) => (
+              <li key={index} className="grid grid-cols-[14px_1fr] gap-3">
+                <span className="mt-[13px] h-[3px] w-[9px] bg-[var(--accent)]" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       ) : null}
     </div>
@@ -1031,14 +1000,20 @@ export default function ProposalConfigurator() {
           </div>
 
           <div className="border-b border-neutral-300">
-            {blocks.map((block) => (
-              <ScopeAccordion
-                key={block.id}
-                block={block}
-                open={openBlocks.includes(block.id)}
-                onToggle={() => toggleOpen(block.id)}
-              />
-            ))}
+            {blocks.flatMap((block) =>
+              getAvailableModes(block).map((option) => {
+                const accordionId = block.key + "-" + option.key;
+                return (
+                  <ScopeAccordion
+                    key={accordionId}
+                    block={block}
+                    option={option}
+                    open={openBlocks.includes(accordionId)}
+                    onToggle={() => toggleOpen(accordionId)}
+                  />
+                );
+              })
+            )}
           </div>
         </div>
       </section>
