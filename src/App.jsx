@@ -74,10 +74,15 @@ const getAvailableModes = (block) => {
     });
   }
 
+  if (block?.premium) {
+    modes.push({ key: "premium", ...block.premium });
+  }
+
   return modes;
 };
 
-const getCalculatorOptions = (block) => [noneOption, ...getAvailableModes(block)];
+const getCalculatorOptions = (block) =>
+  block?.required ? getAvailableModes(block) : [noneOption, ...getAvailableModes(block)];
 
 const getDefaultMode = (block) => {
   if (block?.standard) return "standard";
@@ -199,7 +204,7 @@ function ScopeAccordion({ block, open, onToggle }) {
       {open ? (
         <div
           className={`grid gap-4 pb-6 ${
-            availableModes.length > 1 ? "md:grid-cols-2" : "md:grid-cols-1"
+            availableModes.length > 2 ? "md:grid-cols-3" : availableModes.length > 1 ? "md:grid-cols-2" : "md:grid-cols-1"
           }`}
         >
           {availableModes.map((option) => (
@@ -508,6 +513,15 @@ export default function ProposalConfigurator() {
         : selection[block.key] === getDefaultMode(block)
     );
 
+  const hasAnyPremium = blocks.some((block) => Boolean(block.premium));
+  const allPremium =
+    hasAnyPremium &&
+    blocks.every((block) =>
+      block.premium
+        ? selection[block.key] === "premium"
+        : selection[block.key] === getDefaultMode(block)
+    );
+
   const summaryText = useMemo(() => {
     const paymentLines = paymentOptions.flatMap((option, index) => {
       if (option.equalInstallments) {
@@ -540,7 +554,7 @@ export default function ProposalConfigurator() {
       `E-mail: ${contactData.email || "Não informado"}`,
       `WhatsApp: ${contactData.whatsapp || "Não informado"}`,
       "",
-      "Blocos selecionados:",
+      "Perfil selecionado:",
       "",
       ...selectedBlocks.map(
         (item) =>
@@ -586,6 +600,7 @@ export default function ProposalConfigurator() {
       Object.fromEntries(
         blocks.map((block) => [
           block.key,
+          mode === "premium" && block.premium ? "premium" :
           mode === "expanded" && block.expanded ? "expanded" : getDefaultMode(block),
         ])
       )
@@ -665,7 +680,7 @@ export default function ProposalConfigurator() {
       addList(payment.milestones);
     }
 
-    addText("Blocos selecionados", "font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #666666; margin-top: 22px; border-top: 1px solid #dddddd; padding-top: 16px;");
+    addText("Perfil selecionado", "font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #666666; margin-top: 22px; border-top: 1px solid #dddddd; padding-top: 16px;");
 
     selectedBlocks.forEach((item) => {
       addText(`Bloco ${item.id} · ${item.title}`, "font-size: 15px; font-weight: 700; margin-top: 14px;");
@@ -1084,6 +1099,19 @@ export default function ProposalConfigurator() {
                       {sections.investment.expandedButtonDesktop ||
                         "Configuração expandida"}
                     </span>
+                  </button>
+                ) : null}
+                {hasAnyPremium ? (
+                  <button
+                    onClick={() => setAll("premium")}
+                    className={`whitespace-nowrap border px-3 py-3 text-center text-xs font-semibold transition sm:px-4 sm:text-sm ${
+                      allPremium
+                        ? "border-[var(--accent)] bg-[var(--accent)] text-white"
+                        : "border-neutral-900 bg-white text-neutral-950 hover:bg-neutral-100"
+                    }`}
+                  >
+                    <span className="sm:hidden">{sections.investment.premiumButtonMobile || "Premium"}</span>
+                    <span className="hidden sm:inline">{sections.investment.premiumButtonDesktop || "Premium"}</span>
                   </button>
                 ) : null}
               </div>
