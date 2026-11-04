@@ -145,7 +145,7 @@ export const proposal = {
       "items": [
         "A Simplexa desenvolve o conceito, a marca, o sistema visual, o projeto editorial e as artes contratadas, realizando a apresentação criativa e a finalização dos arquivos.",
         "A Ensaio coordena a relação com a comissão, o envio e a validação dos conteúdos, a contratação de fornecedores, a produção gráfica, a fabricação e a entrega dos itens físicos.",
-        "Os convites de até 4, 8 ou 16 páginas são coletivos, com diagramação igual para toda a turma; não incluem versões editoriais independentes para cada formando.",
+        "Os convites de 8, 12 ou 16 a 20 páginas, conforme o perfil contratado, são coletivos, com diagramação igual para toda a turma; não incluem versões editoriais independentes para cada formando.",
         "O card Premium utiliza um único projeto gráfico; admite apenas troca de nome, frase opcional, endereço, data, horário e informações da festa particular, sem novo layout individual.",
         "O site Premium parte de uma estrutura técnica previamente definida, personalizada com a identidade da turma. Domínio exclusivo, hospedagem prolongada e funções extras precisam de definição específica.",
         "Faixa e banner são artes, não peças produzidas. Ambientação Premium significa proposta de aplicação e arquivos de design acordados conforme o local, sem fabricação, montagem ou instalação.",
@@ -183,7 +183,7 @@ export const proposal = {
           "Marca ou assinatura gráfica exclusiva e sistema de identidade visual: tipografia, cores, grafismos, padrões e linguagem editorial.",
           "Apresentação do conceito para aprovação e finalização da linguagem gráfica.",
           "Artes para camiseta, boné e um brinde comemorativo.",
-          "Projeto gráfico e editorial do convite coletivo físico de até 4 páginas.",
+          "Projeto gráfico e editorial do convite coletivo físico de 8 páginas.",
           "Convite coletivo digital em PDF.",
           "Preparação e entrega dos arquivos finais à Ensaio."
         ]
@@ -197,7 +197,7 @@ export const proposal = {
           "Marca ou assinatura gráfica exclusiva e sistema de identidade visual: tipografia, cores, grafismos, padrões e linguagem editorial.",
           "Apresentação do conceito para aprovação e finalização da linguagem gráfica.",
           "Artes para camiseta, boné e um brinde comemorativo.",
-          "Projeto gráfico e editorial do convite coletivo físico de até 8 páginas.",
+          "Projeto gráfico e editorial do convite coletivo físico de 12 páginas.",
           "Convite coletivo digital em PDF.",
           "Artes para faixa e banner.",
           "Preparação e entrega dos arquivos finais à Ensaio."
@@ -212,7 +212,7 @@ export const proposal = {
           "Marca ou assinatura gráfica exclusiva e sistema de identidade visual: tipografia, cores, grafismos, padrões e linguagem editorial.",
           "Apresentação do conceito para aprovação e refinamento de aplicações com maior complexidade visual.",
           "Artes para camiseta, boné e um brinde comemorativo.",
-          "Projeto gráfico e editorial do convite coletivo físico de até 16 páginas.",
+          "Projeto gráfico e editorial do convite coletivo físico de 16 a 20 páginas.",
           "Convite coletivo digital em PDF e site de convite publicado, acessível por link, com estrutura técnica previamente definida.",
           "Card digital individual para cada formando, derivado de um único layout da turma; dados variáveis: nome, frase opcional, endereço, data, horário e especificações da festa individual.",
           "Artes para faixa e banner.",
