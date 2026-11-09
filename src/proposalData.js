@@ -144,7 +144,8 @@ export const proposal = {
       "title": "Escopo, responsabilidades e limites.",
       "items": [
         "A Simplexa desenvolve o conceito, a marca, o sistema visual, o projeto editorial e as artes contratadas, realizando a apresentação criativa e a finalização dos arquivos.",
-        "A Ensaio coordena a relação com a comissão, o envio e a validação dos conteúdos, a contratação de fornecedores, a produção gráfica, a fabricação e a entrega dos itens físicos.",
+        "A Ensaio coordena a relação com a comissão, a seleção, o tratamento e a entrega das fotografias finalizadas em alta resolução (coloridas ou em preto e branco, conforme necessário), além do envio e validação dos demais conteúdos, contratação de fornecedores, produção gráfica, fabricação e entrega dos itens físicos.",
+        "A Ensaio define e aplica seu próprio padrão fotográfico de cor, luminosidade, contraste e tratamento, entregando as imagens prontas para uso. A Simplexa realiza apenas a diagramação, o dimensionamento, o enquadramento e os recortes necessários à composição editorial; não estão incluídos tratamento, equalização, conversão para preto e branco ou alterações do padrão fotográfico.",
         "Os convites de 8, 12 ou 16 a 20 páginas, conforme o perfil contratado, são coletivos, com diagramação igual para toda a turma; não incluem versões editoriais independentes para cada formando.",
         "O card Premium utiliza um único projeto gráfico; admite apenas troca de nome, frase opcional, endereço, data, horário e informações da festa particular, sem novo layout individual.",
         "O site Premium parte de uma estrutura técnica previamente definida, personalizada com a identidade da turma. Domínio exclusivo, hospedagem prolongada e funções extras precisam de definição específica.",
